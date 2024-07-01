@@ -10,7 +10,7 @@ function IntroView({ result }: Props): React.ReactElement {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text>{result}</Text>
+        <Text style={{ color: "black" }}>{result}</Text>
         <View style={{ height: 100 }} />
       </ScrollView>
     </View>
