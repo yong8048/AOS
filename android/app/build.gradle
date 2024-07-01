@@ -85,6 +85,7 @@ android {
         versionCode 1
         versionName "1.0"
         manifestPlaceholders = [KAKAO_NATIVE_APP_KEY: project.env.get("KAKAO_NATIVE_APP_KEY")]
+        resValue "string", "kakao_native_app_key", project.env.get("KAKAO_NATIVE_APP_KEY")
     }
     signingConfigs {
         debug {
