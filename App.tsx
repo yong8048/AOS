@@ -8,13 +8,21 @@
 import React, { useEffect } from "react";
 import Config from "react-native-config";
 import Navigation from "./src/navigation/Navigation";
-import { SafeAreaView, Text } from "react-native";
+import ReactQueryProvider from "@/components/Common/ReactQueryProvider";
+import { ThemeProvider } from "styled-components/native";
+import theme from "@/styles/theme";
 
 function App(): React.JSX.Element {
   useEffect(() => {
     console.log(Config.GOOGLE_ACCOUNT_CLIENT_ID);
   }, []);
-  return <Navigation />;
+  return (
+    <ReactQueryProvider>
+      <ThemeProvider theme={theme}>
+        <Navigation />
+      </ThemeProvider>
+    </ReactQueryProvider>
+  );
 }
 
 export default App;
