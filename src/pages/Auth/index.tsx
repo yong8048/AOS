@@ -6,7 +6,7 @@ import SignUp from "./SignUp";
 
 const Auth = () => {
   return (
-    <Stack.Navigator initialRouteName="Login" screenOptions={{ headerTitleAlign: "center" }}>
+    <Stack.Navigator initialRouteName="Intro" screenOptions={{ headerTitleAlign: "center" }}>
       <Stack.Screen name="Intro" component={Intro} options={{ headerTitle: "LOGIN" }} />
       <Stack.Screen name="Login" component={Login} options={{ headerTitle: "이메일 로그인" }} />
       <Stack.Screen name="SignUp" component={SignUp} />
