@@ -9,6 +9,7 @@ const Intro = () => {
   const signInWithKakao = async (): Promise<void> => {
     try {
       const token = await login();
+      console.log(token);
       setResult(JSON.stringify(token));
     } catch (err) {
       console.error("login err", err);
@@ -28,7 +29,7 @@ const Intro = () => {
   const getProfile = async (): Promise<void> => {
     try {
       const profile = await getKakaoProfile();
-
+      console.log(profile);
       setResult(JSON.stringify(profile));
     } catch (err) {
       console.error("signOut error", err);
