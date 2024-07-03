@@ -9,7 +9,7 @@ const Auth = () => {
     <Stack.Navigator initialRouteName="Intro" screenOptions={{ headerTitleAlign: "center" }}>
       <Stack.Screen name="Intro" component={Intro} options={{ headerTitle: "LOGIN" }} />
       <Stack.Screen name="Login" component={Login} options={{ headerTitle: "이메일 로그인" }} />
-      <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="SignUp" component={SignUp} options={{ headerTitle: "이메일 회원가입" }} />
     </Stack.Navigator>
   );
 };
