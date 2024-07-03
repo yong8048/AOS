@@ -1,12 +1,15 @@
 import { SafeAreaView, View } from "react-native";
 import React, { useState } from "react";
 import * as S from "./style";
+import { useAppNavigation } from "@/navigation/Navigation";
 
 const Login = () => {
   const [isFocus, setIsFocus] = useState({
-    first: false,
-    second: false,
+    email: false,
+    password: false,
   });
+
+  const navigation = useAppNavigation();
 
   return (
     <S.Container>
@@ -15,9 +18,9 @@ const Login = () => {
         <S.Input
           placeholder="이메일을 입력해주세요."
           placeholderTextColor="#ccc"
-          $focus={isFocus.first}
-          onFocus={() => setIsFocus(prevState => ({ ...prevState, first: true }))}
-          onBlur={() => setIsFocus(prevState => ({ ...prevState, first: false }))}
+          $focus={isFocus.email}
+          onFocus={() => setIsFocus(prevState => ({ ...prevState, email: true }))}
+          onBlur={() => setIsFocus(prevState => ({ ...prevState, email: false }))}
         />
       </View>
       <View style={{ marginBottom: 80 }}>
@@ -25,19 +28,19 @@ const Login = () => {
         <S.Input
           placeholder="비밀번호를 입력해주세요."
           placeholderTextColor="#ccc"
-          $focus={isFocus.second}
-          onFocus={() => setIsFocus(prevState => ({ ...prevState, second: true }))}
-          onBlur={() => setIsFocus(prevState => ({ ...prevState, second: false }))}
+          $focus={isFocus.password}
+          onFocus={() => setIsFocus(prevState => ({ ...prevState, password: true }))}
+          onBlur={() => setIsFocus(prevState => ({ ...prevState, password: false }))}
         />
       </View>
-      <S.ButtonLogin id="login">
+      <S.ButtonLogin>
         <S.ButtonText>로그인</S.ButtonText>
       </S.ButtonLogin>
       <S.EtcWrapper>
-        <S.ButtonEtc id="signUp">
+        <S.ButtonEtc onPress={() => navigation.navigate("SignUp")}>
           <S.TextEtc>회원가입</S.TextEtc>
         </S.ButtonEtc>
-        <S.ButtonEtc id="findPW">
+        <S.ButtonEtc>
           <S.TextEtc>비밀번호 찾기</S.TextEtc>
         </S.ButtonEtc>
       </S.EtcWrapper>
