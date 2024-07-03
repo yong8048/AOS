@@ -2,9 +2,9 @@ import axios, { AxiosError } from "axios";
 import Config from "react-native-config";
 import EncryptedStorage from "react-native-encrypted-storage";
 
-const createInstance = () => {
+const createInstance = (baseURL: string) => {
   const instance = axios.create({
-    baseURL: Config.SERVER_BASE_URL,
+    baseURL: baseURL,
     timeout: 10000,
     headers: {
       "Content-Type": "application/json",
@@ -25,4 +25,5 @@ const createInstance = () => {
   return instance;
 };
 
-export const instance = createInstance();
+export const instance = createInstance(Config.SERVER_BASE_URL as string);
+export const bibleInstance = createInstance("https://yesu.io/bible?lang=kor");
