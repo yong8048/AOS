@@ -22,6 +22,7 @@ type StackParamList = {
   Bible: undefined;
   Login: undefined;
   SignUp: undefined;
+  Inquire: undefined;
   FindPassword: undefined;
 };
 
