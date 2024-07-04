@@ -9,10 +9,16 @@ export const InputWrapper = styled.View`
   margin-bottom: 20px;
 `;
 
+export const TitleWrapper = styled.View`
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+`;
+
 export const Title = styled(CustomText)`
   font-size: 20px;
   font-weight: 800;
-  margin-bottom: 6px;
 `;
 
 export const InputWithButton = styled.View<{ $focus: boolean }>`
@@ -64,12 +70,18 @@ export const ProvisionWrapper = styled.View`
   margin: 40px 20px 20px;
 `;
 
-export const ButtonSubmit = styled.TouchableOpacity`
-  background-color: ${({ theme }) => theme.colors.primary_normal};
+export const ButtonSubmit = styled.TouchableOpacity<{ $isValid: boolean }>`
+  background-color: ${({ $isValid, theme }) => ($isValid ? theme.colors.primary_normal : "#aaa")};
   padding: 13px 80px;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   elevation: 3;
   margin-bottom: 20px;
+`;
+
+export const TextError = styled(CustomText)`
+  color: #ff0000;
+  font-size: 16px;
+  font-weight: 800;
 `;
