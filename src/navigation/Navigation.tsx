@@ -20,6 +20,7 @@ type StackParamList = {
   Kakao: undefined;
   Login: undefined;
   SignUp: undefined;
+  Inquire: undefined;
 };
 
 export const useAppNavigation = (): NavigationProp<StackParamList> => {

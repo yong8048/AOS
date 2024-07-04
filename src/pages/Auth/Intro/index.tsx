@@ -6,12 +6,6 @@ import { useAppNavigation } from "@/navigation/Navigation.tsx";
 const Intro = () => {
   const navigation = useAppNavigation();
 
-  const PressMoveToLogin = () => {
-    navigation.navigate("Login");
-  };
-  const PressMoveToSignUp = () => {
-    navigation.navigate("SignUp");
-  };
   return (
     <S.Container>
       <S.Title>
@@ -29,16 +23,29 @@ const Intro = () => {
           <Image source={require("@/assets/google.png")} />
           <S.BtnText>Google로 시작하기</S.BtnText>
         </S.LoginBtn>
-        <S.LoginBtn style={{ backgroundColor: "#5667FF" }} onPress={PressMoveToLogin}>
+        <S.LoginBtn
+          style={{ backgroundColor: "#5667FF" }}
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
+        >
           <Image source={require("@/assets/email.png")} />
           <S.BtnText style={{ color: "#FFFFFF" }}>이메일로 시작하기</S.BtnText>
         </S.LoginBtn>
-        <S.MoveSignUp onPress={PressMoveToSignUp}>
+        <S.MoveSignUp
+          onPress={() => {
+            navigation.navigate("SignUp");
+          }}
+        >
           <S.MoveSignUpText>이메일로 회원가입</S.MoveSignUpText>
         </S.MoveSignUp>
       </S.LoginBtnWrapper>
       <S.Contact>
-        <S.ContactBtn>
+        <S.ContactBtn
+          onPress={() => {
+            navigation.navigate("Inquire");
+          }}
+        >
           <S.ContactBtnText>1:1 문의</S.ContactBtnText>
         </S.ContactBtn>
         <S.ContactBtn>
