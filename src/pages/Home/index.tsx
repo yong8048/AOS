@@ -21,6 +21,13 @@ const Home = () => {
       >
         <Text>카카오</Text>
       </S.NavigationButton>
+      <S.NavigationButton
+        onPress={() => {
+          navigation.navigate("Bible");
+        }}
+      >
+        <Text>성경</Text>
+      </S.NavigationButton>
     </S.MainView>
   );
 };

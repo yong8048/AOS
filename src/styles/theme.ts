@@ -1,9 +1,9 @@
-const color = {
-  primary_normal: "#5667FF",
+const colors = {
+  primary_normal: "#5667ff",
 };
 
 const theme = {
-  color,
+  colors,
 };
 
 export type Theme = typeof theme;
