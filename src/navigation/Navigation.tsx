@@ -22,6 +22,7 @@ type StackParamList = {
   Bible: undefined;
   Login: undefined;
   SignUp: undefined;
+  FindPassword: undefined;
 };
 
 export const useAppNavigation = (): NavigationProp<StackParamList> => {

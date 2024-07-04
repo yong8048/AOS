@@ -40,7 +40,7 @@ const Login = () => {
         <S.ButtonEtc onPress={() => navigation.navigate("SignUp")}>
           <S.TextEtc>회원가입</S.TextEtc>
         </S.ButtonEtc>
-        <S.ButtonEtc>
+        <S.ButtonEtc onPress={() => navigation.navigate("FindPassword")}>
           <S.TextEtc>비밀번호 찾기</S.TextEtc>
         </S.ButtonEtc>
       </S.EtcWrapper>
