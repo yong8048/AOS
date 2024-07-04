@@ -1,13 +1,13 @@
+import { CustomText } from "@/styles/CustomText";
 import styled from "styled-components/native";
 
 export const Container = styled.ScrollView`
   padding: 80px 50px 0;
 `;
 
-export const Title = styled.Text`
+export const Title = styled(CustomText)`
   font-size: 20px;
-  font-weight: 600;
-  color: black;
+  font-weight: 800;
   margin-bottom: 6px;
 `;
 
@@ -29,7 +29,7 @@ export const ButtonLogin = styled.TouchableOpacity`
   elevation: 5;
 `;
 
-export const ButtonText = styled.Text`
+export const ButtonText = styled(CustomText)`
   color: #fff;
   text-align: center;
   font-size: 20px;
@@ -54,7 +54,6 @@ export const ButtonEtc = styled.TouchableOpacity`
   elevation: 5;
 `;
 
-export const TextEtc = styled.Text`
-  color: #000;
+export const TextEtc = styled(CustomText)`
   font-weight: bold;
 `;

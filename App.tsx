@@ -20,6 +20,7 @@ function App(): React.JSX.Element {
       webClientId: Config.GOOGLE_ACCOUNT_CLIENT_ID,
     });
   }, []);
+
   return (
     <ReactQueryProvider>
       <ThemeProvider theme={theme}>
