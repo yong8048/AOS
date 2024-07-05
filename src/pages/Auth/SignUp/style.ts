@@ -25,6 +25,7 @@ export const InputWithButton = styled.View<{ $focus: boolean }>`
   border: 1px solid;
   border-radius: 10px;
   border-color: ${({ $focus }) => ($focus ? "#000" : "#bdbdbd")};
+  elevation: ${({ $focus }) => ($focus ? 3 : 0)};
   padding: 8px 10px;
   background-color: white;
   flex-direction: row;
@@ -61,12 +62,14 @@ export const Input = styled.TextInput<{ $focus: boolean }>`
   font-size: 20px;
   background-color: #fff;
   color: #000;
+  elevation: ${({ $focus }) => ($focus ? 3 : 0)};
 `;
 
 export const ProvisionWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
   margin: 40px 20px 20px;
 `;
 

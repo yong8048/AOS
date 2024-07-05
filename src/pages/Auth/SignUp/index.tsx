@@ -3,25 +3,13 @@ import React, { useState } from "react";
 import * as S from "./style";
 import CheckBox from "@react-native-community/checkbox";
 import { Formik } from "formik";
-import * as Yup from "yup";
 import TitleAndInput from "@/components/Auth/TitleAndInput";
-
-const signUpSchema = Yup.object().shape({
-  email: Yup.string().email("유효한 이메일을 입력해주세요.").required("이메일은 필수 입력 항목입니다."),
-  code: Yup.string().required("인증코드는 필수 입력 항목입니다."),
-  password: Yup.string().min(8, "비밀번호는 최소 8자 이상이어야 합니다.").required("비밀번호는 필수 입력 항목입니다."),
-  duplication: Yup.string()
-    .oneOf([Yup.ref("password")], "비밀번호가 일치하지 않습니다.")
-    .required("비밀번호 확인은 필수 입력 항목입니다."),
-  isChecked: Yup.boolean().oneOf([true], "개인정보 처리 방침에 동의해야 합니다."),
-});
+import { signUpSchema } from "@/utils/Yup_Schema";
 
 const SignUp = () => {
   const [isFocus, setIsFocus] = useState({
     email: false,
     code: false,
-    password: false,
-    duplication: false,
   });
 
   return (
@@ -114,7 +102,7 @@ const SignUp = () => {
           </S.ProvisionWrapper>
           {touched.isChecked && errors.isChecked && <S.TextError>* {errors.isChecked}</S.TextError>}
           <S.ButtonSubmit onPress={() => handleSubmit()} disabled={!isValid} $isValid={isValid}>
-            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 20 }}>회원가입 {isValid}</Text>
+            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 20 }}>회원가입</Text>
           </S.ButtonSubmit>
         </S.Container>
       )}
