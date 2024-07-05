@@ -22,11 +22,11 @@ export const Title = styled(CustomText)`
 `;
 
 export const InputWithButton = styled.View<{ $focus: boolean }>`
-  border: 1px solid black;
+  border: 1px solid;
   border-radius: 10px;
+  border-color: ${({ $focus }) => ($focus ? "#000" : "#bdbdbd")};
   padding: 8px 10px;
   background-color: white;
-  elevation: ${({ $focus }) => ($focus ? 5 : 0)};
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
@@ -55,12 +55,12 @@ export const ButtonConfirm = styled.TouchableOpacity`
 
 export const Input = styled.TextInput<{ $focus: boolean }>`
   border: 1px solid black;
+  border-color: ${({ $focus }) => ($focus ? "#000" : "#bdbdbd")};
   border-radius: 10px;
   padding: 8px 10px;
   font-size: 20px;
   background-color: #fff;
   color: #000;
-  elevation: ${({ $focus }) => ($focus ? 5 : 0)};
 `;
 
 export const ProvisionWrapper = styled.View`

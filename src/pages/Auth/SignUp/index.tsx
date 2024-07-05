@@ -4,6 +4,7 @@ import * as S from "./style";
 import CheckBox from "@react-native-community/checkbox";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import TitleAndInput from "@/components/Auth/TitleAndInput";
 
 const signUpSchema = Yup.object().shape({
   email: Yup.string().email("유효한 이메일을 입력해주세요.").required("이메일은 필수 입력 항목입니다."),
@@ -79,42 +80,26 @@ const SignUp = () => {
             </S.AuthenticationView>
           </S.InputWrapper>
           <S.InputWrapper>
-            <S.TitleWrapper>
-              <S.Title>비밀번호</S.Title>
-              {touched.password && errors.password && <S.TextError>* {errors.password}</S.TextError>}
-            </S.TitleWrapper>
-            <S.Input
+            <TitleAndInput
+              title="비밀번호"
               placeholder="비밀번호를 입력해주세요."
-              placeholderTextColor="#ccc"
-              $focus={isFocus.password}
-              onFocus={() => setIsFocus(prevState => ({ ...prevState, password: true }))}
-              onBlur={() => {
-                setIsFocus(prevState => ({ ...prevState, password: false }));
-                handleBlur("password");
-              }}
-              onChangeText={handleChange("password")}
               value={values.password}
-              secureTextEntry
-            />
+              onChangeText={handleChange("password")}
+              secure
+            >
+              {touched.password && errors.password && <S.TextError>* {errors.password}</S.TextError>}
+            </TitleAndInput>
           </S.InputWrapper>
           <S.InputWrapper>
-            <S.TitleWrapper>
-              <S.Title>비밀번호 확인</S.Title>
-              {touched.duplication && errors.duplication && <S.TextError>* {errors.duplication}</S.TextError>}
-            </S.TitleWrapper>
-            <S.Input
+            <TitleAndInput
+              title="비밀번호 확인"
               placeholder="비밀번호를 다시 입력해주세요."
-              placeholderTextColor="#ccc"
-              $focus={isFocus.duplication}
-              onFocus={() => setIsFocus(prevState => ({ ...prevState, duplication: true }))}
-              onBlur={() => {
-                setIsFocus(prevState => ({ ...prevState, duplication: false }));
-                handleBlur("duplication");
-              }}
-              onChangeText={handleChange("duplication")}
               value={values.duplication}
-              secureTextEntry
-            />
+              onChangeText={handleChange("duplication")}
+              secure
+            >
+              {touched.duplication && errors.duplication && <S.TextError>* {errors.duplication}</S.TextError>}
+            </TitleAndInput>
           </S.InputWrapper>
           <S.ProvisionWrapper>
             <CheckBox
