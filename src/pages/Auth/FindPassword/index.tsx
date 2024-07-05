@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import * as S from "./style";
 import { Animated, Text, View } from "react-native";
 import TitleAndInput from "@/components/Auth/TitleAndInput";
+import theme from "@/styles/theme";
 
 const FindPassword = () => {
   const [isFocus, setIsFocus] = useState({
@@ -49,7 +50,7 @@ const FindPassword = () => {
             <S.InputWithButton $focus={isFocus.email}>
               <S.InputInView
                 placeholder="이메일을 입력해주세요."
-                placeholderTextColor="#ccc"
+                placeholderTextColor={theme.colors.place_holder}
                 onFocus={() => setIsFocus(prevState => ({ ...prevState, email: true }))}
                 onBlur={() => {
                   setIsFocus(prevState => ({ ...prevState, email: false }));
@@ -72,7 +73,7 @@ const FindPassword = () => {
               <S.Input
                 style={{ flex: 1 }}
                 placeholder="인증코드를 입력해주세요."
-                placeholderTextColor="#ccc"
+                placeholderTextColor={theme.colors.place_holder}
                 $focus={isFocus.code}
                 onFocus={() => setIsFocus(prevState => ({ ...prevState, code: true }))}
                 onBlur={() => {

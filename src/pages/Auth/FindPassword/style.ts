@@ -23,7 +23,7 @@ export const Title = styled(CustomText)`
 export const InputWithButton = styled.View<{ $focus: boolean }>`
   border: 1px solid;
   border-radius: 10px;
-  border-color: ${({ $focus }) => ($focus ? "#000" : "#bdbdbd")};
+  border-color: ${({ $focus, theme }) => ($focus ? "#000" : theme.colors.place_holder)};
   elevation: ${({ $focus }) => ($focus ? 3 : 0)};
   padding: 8px 10px;
   background-color: white;
@@ -55,7 +55,7 @@ export const ButtonConfirm = styled.TouchableOpacity`
 
 export const Input = styled.TextInput<{ $focus: boolean }>`
   border: 1px solid black;
-  border-color: ${({ $focus }) => ($focus ? "#000" : "#bdbdbd")};
+  border-color: ${({ $focus, theme }) => ($focus ? "#000" : theme.colors.place_holder)};
   border-radius: 10px;
   padding: 8px 10px;
   font-size: 20px;

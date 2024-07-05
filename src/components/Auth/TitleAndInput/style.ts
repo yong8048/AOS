@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 
 export const Input = styled.TextInput<{ $focus: boolean }>`
   border: 1px solid;
-  border-color: ${({ $focus }) => ($focus ? "#000" : "#bdbdbd")};
+  border-color: ${({ $focus, theme }) => ($focus ? "#000" : theme.colors.place_holder)};
   border-radius: 10px;
   padding: 8px 10px;
   font-size: 20px;

@@ -5,6 +5,7 @@ import CheckBox from "@react-native-community/checkbox";
 import { Formik } from "formik";
 import TitleAndInput from "@/components/Auth/TitleAndInput";
 import { signUpSchema } from "@/utils/Yup_Schema";
+import theme from "@/styles/theme";
 
 const SignUp = () => {
   const [isFocus, setIsFocus] = useState({
@@ -29,7 +30,7 @@ const SignUp = () => {
             <S.InputWithButton $focus={isFocus.email}>
               <S.InputInView
                 placeholder="이메일을 입력해주세요."
-                placeholderTextColor="#ccc"
+                placeholderTextColor={theme.colors.place_holder}
                 onFocus={() => setIsFocus(prevState => ({ ...prevState, email: true }))}
                 onBlur={() => {
                   setIsFocus(prevState => ({ ...prevState, email: false }));
@@ -52,7 +53,7 @@ const SignUp = () => {
               <S.Input
                 style={{ flex: 1 }}
                 placeholder="인증코드를 입력해주세요."
-                placeholderTextColor="#ccc"
+                placeholderTextColor={theme.colors.place_holder}
                 $focus={isFocus.code}
                 onFocus={() => setIsFocus(prevState => ({ ...prevState, code: true }))}
                 onBlur={() => {

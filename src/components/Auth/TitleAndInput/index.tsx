@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IPropsTitleAndInput } from "@/types/auth";
 import * as S from "./style";
+import theme from "@/styles/theme";
 
 const TitleAndInput = (props: IPropsTitleAndInput) => {
   const [isFocus, setIsFocus] = useState(false);
@@ -12,7 +13,7 @@ const TitleAndInput = (props: IPropsTitleAndInput) => {
       </S.TitleWrapper>
       <S.Input
         placeholder={props.placeholder}
-        placeholderTextColor="#bdbdbd"
+        placeholderTextColor={theme.colors.place_holder}
         $focus={isFocus}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
