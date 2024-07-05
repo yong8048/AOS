@@ -94,7 +94,7 @@ const FindPassword = () => {
         onSubmit={handleChangePassword}
         validateOnMount={true}
       >
-        {({ handleChange, handleSubmit, handleBlur, values, errors, touched, isValid }) => (
+        {({ handleChange, handleSubmit, values, errors, touched, isValid }) => (
           <Animated.View style={{ transform: [{ translateY: translateXAnim }] }}>
             <S.SubTitle>비밀번호 재설정</S.SubTitle>
             <View style={{ marginBottom: 20 }}>
@@ -103,7 +103,6 @@ const FindPassword = () => {
                 placeholder="새 비밀번호를 입력해주세요"
                 value={values.password}
                 onChangeText={handleChange("password")}
-                onBlur={handleBlur("password")}
                 secure
               >
                 {touched.password && errors.password && <S.TextError>* {errors.password}</S.TextError>}
@@ -115,7 +114,6 @@ const FindPassword = () => {
                 placeholder="새 비밀번호를 다시 입력해주세요"
                 value={values.duplication}
                 onChangeText={handleChange("duplication")}
-                onBlur={handleBlur("duplication")}
                 secure
               >
                 {touched.duplication && errors.duplication && <S.TextError>* {errors.duplication}</S.TextError>}
