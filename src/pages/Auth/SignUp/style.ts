@@ -80,7 +80,7 @@ export const ButtonSubmit = styled.TouchableOpacity<{ $isValid: boolean }>`
   justify-content: center;
   align-items: center;
   elevation: 3;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 `;
 
 export const TextError = styled(CustomText)`

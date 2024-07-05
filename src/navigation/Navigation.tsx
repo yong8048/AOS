@@ -15,7 +15,7 @@ const navTheme = {
   },
 };
 
-type StackParamList = {
+interface StackParamList {
   Home: undefined;
   Google: undefined;
   Kakao: undefined;
@@ -24,7 +24,8 @@ type StackParamList = {
   SignUp: undefined;
   Inquire: undefined;
   FindPassword: undefined;
-};
+  InputUserInfo: undefined;
+}
 
 export const useAppNavigation = (): NavigationProp<StackParamList> => {
   return useNavigation<NavigationProp<StackParamList>>();

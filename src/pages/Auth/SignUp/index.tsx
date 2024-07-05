@@ -3,15 +3,22 @@ import React, { useState } from "react";
 import * as S from "./style";
 import CheckBox from "@react-native-community/checkbox";
 import { Formik } from "formik";
-import TitleAndInput from "@/components/Auth/TitleAndInput";
+import TitleWithInput from "@/components/Auth/TitleWithInput";
 import { signUpSchema } from "@/utils/Yup_Schema";
 import theme from "@/styles/theme";
+import TitleWithConfirmInput from "@/components/Auth/TItleWithConfirmInput";
 
 const SignUp = () => {
   const [isFocus, setIsFocus] = useState({
     email: false,
     code: false,
   });
+
+  const handleSendEmail = () => {};
+
+  const handleCheckCode = () => {};
+
+  const handleSignUp = () => {};
 
   return (
     <Formik
@@ -23,26 +30,15 @@ const SignUp = () => {
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched, setFieldValue, isValid }) => (
         <S.Container>
           <S.InputWrapper>
-            <S.TitleWrapper>
-              <S.Title>이메일</S.Title>
+            <TitleWithConfirmInput
+              title="이메일"
+              placeholder="이메일을 입력해주세요."
+              value={values.email}
+              onChangeText={handleChange("email")}
+              onPress={handleSendEmail}
+            >
               {touched.email && errors.email && <S.TextError>* {errors.email}</S.TextError>}
-            </S.TitleWrapper>
-            <S.InputWithButton $focus={isFocus.email}>
-              <S.InputInView
-                placeholder="이메일을 입력해주세요."
-                placeholderTextColor={theme.colors.place_holder}
-                onFocus={() => setIsFocus(prevState => ({ ...prevState, email: true }))}
-                onBlur={() => {
-                  setIsFocus(prevState => ({ ...prevState, email: false }));
-                  handleBlur("email");
-                }}
-                onChangeText={handleChange("email")}
-                value={values.email}
-              />
-              <S.ButtonConfirm>
-                <Text style={{ fontWeight: "800", color: "#fff" }}>인증</Text>
-              </S.ButtonConfirm>
-            </S.InputWithButton>
+            </TitleWithConfirmInput>
           </S.InputWrapper>
           <S.InputWrapper>
             <S.TitleWrapper>
@@ -69,7 +65,7 @@ const SignUp = () => {
             </S.AuthenticationView>
           </S.InputWrapper>
           <S.InputWrapper>
-            <TitleAndInput
+            <TitleWithInput
               title="비밀번호"
               placeholder="비밀번호를 입력해주세요."
               value={values.password}
@@ -77,10 +73,10 @@ const SignUp = () => {
               secure
             >
               {touched.password && errors.password && <S.TextError>* {errors.password}</S.TextError>}
-            </TitleAndInput>
+            </TitleWithInput>
           </S.InputWrapper>
           <S.InputWrapper>
-            <TitleAndInput
+            <TitleWithInput
               title="비밀번호 확인"
               placeholder="비밀번호를 다시 입력해주세요."
               value={values.duplication}
@@ -88,7 +84,7 @@ const SignUp = () => {
               secure
             >
               {touched.duplication && errors.duplication && <S.TextError>* {errors.duplication}</S.TextError>}
-            </TitleAndInput>
+            </TitleWithInput>
           </S.InputWrapper>
           <S.ProvisionWrapper>
             <CheckBox
