@@ -1,4 +1,5 @@
 import { CustomText } from "@/styles/CustomText";
+import { Animated } from "react-native";
 import styled from "styled-components/native";
 
 export const Container = styled.ScrollView`
@@ -76,6 +77,8 @@ export const SubTitle = styled(CustomText)`
   margin: 50px 0 20px;
 `;
 
+export const AnimatedView = styled(Animated.View)``;
+
 export const ButtonSubmit = styled.TouchableOpacity<{ $isValid: boolean }>`
   background-color: ${({ $isValid, theme }) => ($isValid ? theme.colors.primary_normal : "#aaa")};
   padding: 13px 80px;
@@ -83,5 +86,5 @@ export const ButtonSubmit = styled.TouchableOpacity<{ $isValid: boolean }>`
   justify-content: center;
   align-items: center;
   /* elevation: 3; */
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 `;
