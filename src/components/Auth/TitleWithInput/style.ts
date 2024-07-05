@@ -15,7 +15,6 @@ export const Input = styled.TextInput<{ $focus: boolean }>`
 export const Title = styled(CustomText)`
   font-size: 20px;
   font-weight: 800;
-  margin-bottom: 6px;
 `;
 
 export const TitleWrapper = styled.View`
