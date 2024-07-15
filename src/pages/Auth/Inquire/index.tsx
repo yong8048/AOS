@@ -1,30 +1,65 @@
-import { View, Text, TextInput, ScrollView, Touchable, TouchableOpacity } from "react-native";
-import React from "react";
+import { View, ScrollView, Alert } from "react-native";
+import React, { useState } from "react";
 import * as S from "./style";
-import theme from "@/styles/theme";
+import TitleWithInput from "@/components/Auth/TitleWithInput";
+import { useAppNavigation } from "@/navigation/Navigation";
+
 const Inquire = () => {
+  const navigation = useAppNavigation();
+  const [isFocus, setIsFocus] = useState(false);
+  const [inquireData, setInquireData] = useState({
+    email: "",
+    title: "",
+    content: "",
+  });
+
+  const handlePressSendData = () => {
+    if (inquireData.email === "") {
+      console.log("이메일");
+    }
+    if (inquireData.title === "") {
+      console.log("제목");
+    }
+    if (inquireData.content === "") {
+      console.log("내용");
+    }
+    if (inquireData.email !== "" && inquireData.title !== "" && inquireData.content !== "") {
+      Alert.alert("알림", "문의가 전송되었습니다.", [{ text: "확인", onPress: () => navigation.goBack() }], {
+        cancelable: false,
+      });
+    }
+  };
   return (
     <ScrollView>
       <S.Container>
-        <S.InputWrapper>
-          <S.InputInText>이메일</S.InputInText>
-          <S.TI placeholder="이메일을 입력해주세요." placeholderTextColor={theme.colors.place_holder} />
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <S.InputInText>제목</S.InputInText>
-          <S.TI placeholder="제목을 입력해주세요." placeholderTextColor={theme.colors.place_holder} />
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <S.InputInText>내용</S.InputInText>
-          <S.TI
+        <View style={{ marginBottom: 20 }}>
+          <TitleWithInput
+            title="이메일"
+            placeholder="답변받으실 이메일을 입력해주세요."
+            value={inquireData.email}
+            onChangeText={text => setInquireData({ ...inquireData, email: text })}
+          />
+        </View>
+        <View style={{ marginBottom: 20 }}>
+          <TitleWithInput
+            title="제목"
+            placeholder="제목을 입력해주세요."
+            value={inquireData.title}
+            onChangeText={text => setInquireData({ ...inquireData, title: text })}
+          />
+        </View>
+        <View style={{ marginBottom: 20 }}>
+          <TitleWithInput
+            title="문의 내용"
             placeholder="문의 내용을 입력해주세요."
+            value={inquireData.content}
             multiline={true}
-            placeholderTextColor={theme.colors.place_holder}
+            onChangeText={text => setInquireData({ ...inquireData, content: text })}
             style={{ minHeight: 300, textAlignVertical: "top" }}
           />
-        </S.InputWrapper>
+        </View>
 
-        <S.SendBtn>
+        <S.SendBtn onPress={handlePressSendData}>
           <S.BtnInText>문의하기</S.BtnInText>
         </S.SendBtn>
       </S.Container>

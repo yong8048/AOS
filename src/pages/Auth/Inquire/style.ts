@@ -1,10 +1,11 @@
+import { CustomText } from "@/components/Common/OMGText/style";
 import styled from "styled-components/native";
 
 export const Container = styled.View`
   margin: 40px 50px;
 `;
 export const InputWrapper = styled.View``;
-export const TI = styled.TextInput`
+export const InquireContent = styled.TextInput<{ $focus: boolean }>`
   border: 1px solid #222;
   border-radius: 10px;
   margin-bottom: 20px;
