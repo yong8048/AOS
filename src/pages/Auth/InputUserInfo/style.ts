@@ -1,4 +1,5 @@
 import { CustomText } from "@/styles/CustomText";
+import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const Container = styled.ScrollView`
@@ -10,6 +11,7 @@ export const SubTitle = styled(CustomText)`
   font-weight: 800;
   text-align: center;
   margin-bottom: 40px;
+  font-size: ${RFValue(20, 800)}px;
 `;
 
 export const Title = styled(CustomText)`
@@ -56,4 +58,14 @@ export const TextError = styled(CustomText)`
   color: #ff0000;
   font-size: 16px;
   font-weight: 800;
+`;
+
+export const ButtonSubmit = styled.TouchableOpacity<{ $isValid: boolean }>`
+  background-color: ${({ $isValid, theme }) => ($isValid ? theme.colors.primary_normal : "#aaa")};
+  padding: 13px 80px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  elevation: 3;
+  margin-bottom: 60px;
 `;

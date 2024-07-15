@@ -53,6 +53,7 @@ const FindPassword = () => {
               <TitleWithConfirmInput
                 title="이메일"
                 placeholder="이메일을 입력해주세요."
+                buttonText="인증"
                 value={values.email}
                 onChangeText={handleChange("email")}
                 onPress={handleSendEmail}

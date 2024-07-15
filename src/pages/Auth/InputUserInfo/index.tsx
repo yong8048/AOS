@@ -1,54 +1,48 @@
 import { Text, View } from "react-native";
 import React, { useState } from "react";
 import * as S from "./style";
-import { Formik } from "formik";
-import theme from "@/styles/theme";
+import { Formik, FormikErrors } from "formik";
 import DatePicker from "react-native-date-picker";
 import TitleWithInput from "@/components/Auth/TitleWithInput";
 import { nickNameSchema } from "@/utils/Yup_Schema";
+import TitleWithConfirmInput from "@/components/Auth/TItleWithConfirmInput";
 
 const InputUserInfo = () => {
   const [date, setDate] = useState(new Date());
   const [isOpen, setIsOpen] = useState(false);
   const [firstClick, setFirstClick] = useState(false);
-  const [isFocus, setIsFocus] = useState({
-    nickName: false,
-    code: false,
-  });
 
-  console.log(date);
+  const handleCheckValid = (
+    setFieldValue: (
+      field: string,
+      value: any,
+    ) => Promise<void | FormikErrors<{ nickName: string; validation: boolean }>>,
+  ) => {
+    // 중복확인 API 추가해야함
+    setFieldValue("validation", true);
+  };
+
   return (
     <Formik
-      initialValues={{ nickName: "" }}
+      initialValues={{ nickName: "", validation: false }}
       onSubmit={value => console.log(value)}
       validationSchema={nickNameSchema}
       validateOnMount
     >
-      {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isValid }) => (
+      {({ handleChange, handleBlur, handleSubmit, values, setFieldValue, errors, touched, isValid }) => (
         <S.Container>
           <View style={{ marginBottom: 20 }}>
             <S.SubTitle>서비스에서 사용할 정보를 입력해주세요!</S.SubTitle>
-            <S.TitleWrapper>
-              <S.Title>닉네임</S.Title>
+            <TitleWithConfirmInput
+              title="닉네임"
+              placeholder="닉네임을 입력해주세요"
+              buttonText="중복확인"
+              value={values.nickName}
+              onChangeText={handleChange("nickName")}
+              onPress={() => handleCheckValid(setFieldValue)}
+            >
               {touched.nickName && errors.nickName && <S.TextError>* {errors.nickName}</S.TextError>}
-            </S.TitleWrapper>
-            <S.InputWithButton $focus={isFocus.nickName}>
-              <S.InputInView
-                placeholder="이메일을 입력해주세요."
-                placeholderTextColor={theme.colors.place_holder}
-                onFocus={() => setIsFocus(prevState => ({ ...prevState, nickName: true }))}
-                onBlur={() => {
-                  setIsFocus(prevState => ({ ...prevState, nickName: false }));
-                  handleBlur("nickName");
-                }}
-                onChangeText={handleChange("nickName")}
-                maxLength={15}
-                value={values.nickName}
-              />
-              <S.ButtonConfirm onPress={() => handleSubmit()}>
-                <Text style={{ fontWeight: "800", color: "#fff" }}>중복확인</Text>
-              </S.ButtonConfirm>
-            </S.InputWithButton>
+            </TitleWithConfirmInput>
           </View>
           <View style={{ marginBottom: 40 }}>
             <TitleWithInput
@@ -61,6 +55,8 @@ const InputUserInfo = () => {
           </View>
           <DatePicker
             mode="date"
+            locale="ko"
+            title="생년월일 선택"
             modal
             open={isOpen}
             date={date}
@@ -71,6 +67,9 @@ const InputUserInfo = () => {
               setDate(date);
             }}
           />
+          <S.ButtonSubmit onPress={() => handleSubmit()} disabled={!isValid} $isValid={isValid}>
+            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 20 }}>완료</Text>
+          </S.ButtonSubmit>
         </S.Container>
       )}
     </Formik>
@@ -80,6 +79,7 @@ const InputUserInfo = () => {
 export default InputUserInfo;
 
 const parseDate = (date: string) => {
+  console.log(date);
   const arr = date.split(".");
-  return `${arr[0]}년${arr[1]}월${arr[2]}일`;
+  return `${arr[0]}년 ${arr[1]}월 ${arr[2]}일`;
 };
