@@ -8,14 +8,6 @@ import { GoogleSignin } from "@react-native-google-signin/google-signin";
 const Intro = () => {
   const navigation = useAppNavigation();
 
-  const handlePressMoveToLogin = () => {
-    navigation.navigate("Login");
-  };
-
-  const handlePressMoveToSignUp = () => {
-    navigation.navigate("SignUp");
-  };
-
   const handlePressKakao = async () => {
     try {
       const res = await kakaoLogin();
@@ -52,11 +44,20 @@ const Intro = () => {
           <Image source={require("@/assets/google.png")} />
           <S.BtnText>Google로 시작하기</S.BtnText>
         </S.LoginBtn>
-        <S.LoginBtn style={{ backgroundColor: "#5667FF" }} onPress={handlePressMoveToLogin}>
+        <S.LoginBtn
+          style={{ backgroundColor: "#5667FF" }}
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
+        >
           <Image source={require("@/assets/email.png")} />
           <S.BtnText style={{ color: "#FFFFFF" }}>이메일로 시작하기</S.BtnText>
         </S.LoginBtn>
-        <S.MoveSignUp onPress={handlePressMoveToSignUp}>
+        <S.MoveSignUp
+          onPress={() => {
+            navigation.navigate("SignUp");
+          }}
+        >
           <S.MoveSignUpText>이메일로 회원가입</S.MoveSignUpText>
         </S.MoveSignUp>
       </S.LoginBtnWrapper>
