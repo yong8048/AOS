@@ -1,11 +1,14 @@
 import React from "react";
 import { Stack } from "@/navigation/Navigation";
+import { RFValue } from "react-native-responsive-fontsize";
+import Header from "@/components/Header";
 import Intro from "./Intro";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import Inquire from "./Inquire";
 import FindPassword from "./FindPassword";
 import InputUserInfo from "./InputUserInfo";
+import { SafeAreaView, View } from "react-native";
 
 const Auth = () => {
   return (
@@ -13,7 +16,13 @@ const Auth = () => {
       initialRouteName="Intro"
       screenOptions={{
         headerTitleAlign: "center",
-        headerTitleStyle: { fontFamily: "PretendardVariable", fontWeight: "800" },
+        headerTitleStyle: {
+          fontFamily: "PretendardVariable",
+          fontWeight: "800",
+          // fontSize: RFValue(20, 800),
+        },
+        // header: props => Header(props),
+        // animation: "fade",
       }}
     >
       <Stack.Screen name="Intro" component={Intro} options={{ headerTitle: "LOGIN" }} />

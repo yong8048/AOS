@@ -7,6 +7,7 @@ import TitleWithInput from "@/components/Auth/TitleWithInput";
 import { signUpSchema } from "@/utils/Yup_Schema";
 import theme from "@/styles/theme";
 import TitleWithConfirmInput from "@/components/Auth/TItleWithConfirmInput";
+import { RFValue } from "react-native-responsive-fontsize";
 
 const SignUp = () => {
   const [isFocus, setIsFocus] = useState({
@@ -33,6 +34,7 @@ const SignUp = () => {
             <TitleWithConfirmInput
               title="이메일"
               placeholder="이메일을 입력해주세요."
+              buttonText="인증"
               value={values.email}
               onChangeText={handleChange("email")}
               onPress={handleSendEmail}
@@ -92,9 +94,11 @@ const SignUp = () => {
               onValueChange={value => setFieldValue("isChecked", value)}
               tintColors={{ true: "#5667ff", false: "#5667ff" }}
             />
-            <Text style={{ color: "#000", fontSize: 16, fontWeight: "800" }}>[필수] 개인정보 처리 방침</Text>
+            <Text style={{ color: "#000", fontSize: RFValue(16, 800), fontWeight: "800" }}>
+              [필수] 개인정보 처리 방침
+            </Text>
             <TouchableOpacity>
-              <Text style={{ color: "#000", fontSize: 16, fontWeight: "800" }}>[보기]</Text>
+              <Text style={{ color: "#000", fontSize: RFValue(16, 800), fontWeight: "800" }}>[보기]</Text>
             </TouchableOpacity>
           </S.ProvisionWrapper>
           {touched.isChecked && errors.isChecked && <S.TextError>* {errors.isChecked}</S.TextError>}
