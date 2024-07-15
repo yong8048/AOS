@@ -64,7 +64,7 @@ const Intro = () => {
         <S.ContactBtn onPress={() => navigation.navigate("Inquire")}>
           <S.ContactBtnText>1:1 문의</S.ContactBtnText>
         </S.ContactBtn>
-        <S.ContactBtn>
+        <S.ContactBtn onPress={() => navigation.navigate("Main")}>
           <S.ContactBtnText>FAQ</S.ContactBtnText>
         </S.ContactBtn>
       </S.Contact>

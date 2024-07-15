@@ -1,8 +1,9 @@
 import { CustomText } from "@/styles/CustomText";
+import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  margin: 40px 20px 0 20px;
+  margin: 40px 20px 0;
 `;
 
 export const Title = styled.View`
@@ -29,7 +30,8 @@ export const LoginBtnWrapper = styled.View`
 export const LoginBtn = styled.TouchableOpacity`
   width: 100%;
   text-align: center;
-  height: 48px;
+  /* height: 48px; */
+  padding: 14px 0;
   border-radius: 10px;
   elevation: 5;
   margin-bottom: 20px;
@@ -40,9 +42,10 @@ export const LoginBtn = styled.TouchableOpacity`
 `;
 export const BtnText = styled(CustomText)`
   text-align: center;
-  line-height: 48px;
+  /* line-height: 48px; */
   font-weight: bold;
   color: #000;
+  font-size: ${RFValue(16, 800)}px;
 `;
 
 export const MoveSignUp = styled.TouchableOpacity`
