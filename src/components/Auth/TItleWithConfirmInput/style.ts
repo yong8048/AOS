@@ -1,4 +1,5 @@
 import { CustomText } from "@/styles/CustomText";
+import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const InputWithButton = styled.View<{ $focus: boolean }>`
@@ -15,13 +16,13 @@ export const InputWithButton = styled.View<{ $focus: boolean }>`
 
 export const InputInView = styled.TextInput`
   padding: 0;
-  font-size: 20px;
   color: #000;
+  font-size: ${RFValue(16, 800)}px;
   flex: 1;
 `;
 
 export const Title = styled(CustomText)`
-  font-size: 20px;
+  font-size: ${RFValue(18, 800)}px;
   font-weight: 800;
 `;
 

@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import * as S from "./style";
 import { IPropsTitleWithConfirmInput } from "@/types/auth";
 import theme from "@/styles/theme";
-import { Text } from "react-native";
+import { Alert, Text } from "react-native";
 
 const TitleWithConfirmInput = (props: IPropsTitleWithConfirmInput) => {
   const [isFocus, setIsFocus] = useState(false);
+
+  const handlePressConfirm = () => {
+    props.onPress && props.onPress();
+    // 후처리
+  };
   return (
     <>
       <S.TitleWrapper>
@@ -23,8 +28,8 @@ const TitleWithConfirmInput = (props: IPropsTitleWithConfirmInput) => {
           secureTextEntry={props.secure}
           keyboardType={props.keyboardType || "default"}
         />
-        <S.ButtonConfirm onPress={props.onPress}>
-          <Text style={{ fontWeight: "800", color: "#fff" }}>인증</Text>
+        <S.ButtonConfirm onPress={handlePressConfirm}>
+          <Text style={{ fontWeight: "800", color: "#fff" }}>{props.buttonText}</Text>
         </S.ButtonConfirm>
       </S.InputWithButton>
     </>
