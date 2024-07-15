@@ -12,15 +12,8 @@ interface IPropsTitleWithInput {
   disabled?: boolean;
 }
 
-interface IPropsTitleWithConfirmInput {
-  children?: React.ReactNode;
-  title: string;
-  placeholder: string;
-  onChangeText?: (text: string) => void;
-  onPress: () => void;
-  value: string;
-  secure?: boolean;
-  keyboardType?: KeyboardTypeOptions;
+interface IPropsTitleWithConfirmInput extends IPropsTitleWithInput {
+  buttonText: string;
 }
 
 export type { IPropsTitleWithInput, IPropsTitleWithConfirmInput };
