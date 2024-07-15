@@ -1,12 +1,22 @@
 import { CustomText } from "@/styles/CustomText";
-import { Animated } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const Container = styled.ScrollView`
   padding: 40px 50px 0;
 `;
-export const InputWrapper = styled.View`
-  margin-bottom: 20px;
+
+export const SubTitle = styled(CustomText)`
+  font-size: 22px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: ${RFValue(20, 800)}px;
+`;
+
+export const Title = styled(CustomText)`
+  font-size: 20px;
+  font-weight: 800;
 `;
 
 export const TitleWrapper = styled.View`
@@ -14,11 +24,6 @@ export const TitleWrapper = styled.View`
   gap: 10px;
   align-items: center;
   margin-bottom: 6px;
-`;
-
-export const Title = styled(CustomText)`
-  font-size: 20px;
-  font-weight: 800;
 `;
 
 export const InputWithButton = styled.View<{ $focus: boolean }>`
@@ -33,36 +38,20 @@ export const InputWithButton = styled.View<{ $focus: boolean }>`
   gap: 10px;
 `;
 
-export const InputInView = styled.TextInput`
-  padding: 0;
-  font-size: 20px;
-  color: #000;
-  flex: 1;
-`;
-
-export const AuthenticationView = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 10px;
-`;
-
 export const ButtonConfirm = styled.TouchableOpacity`
-  padding: 7px 25px;
+  width: 72px;
+  align-items: center;
   background-color: ${({ theme }) => theme.colors.primary_normal};
   border-radius: 10px;
   justify-content: center;
   elevation: 5;
 `;
 
-export const Input = styled.TextInput<{ $focus: boolean }>`
-  border: 1px solid black;
-  border-color: ${({ $focus, theme }) => ($focus ? "#000" : theme.colors.place_holder)};
-  border-radius: 10px;
-  padding: 8px 10px;
+export const InputInView = styled.TextInput`
+  padding: 0;
   font-size: 20px;
-  background-color: #fff;
   color: #000;
-  elevation: ${({ $focus }) => ($focus ? 3 : 0)};
+  flex: 1;
 `;
 
 export const TextError = styled(CustomText)`
@@ -71,20 +60,12 @@ export const TextError = styled(CustomText)`
   font-weight: 800;
 `;
 
-export const SubTitle = styled(CustomText)`
-  font-size: 24px;
-  font-weight: 800;
-  margin: 50px 0 20px;
-`;
-
-export const AnimatedView = styled(Animated.View)``;
-
 export const ButtonSubmit = styled.TouchableOpacity<{ $isValid: boolean }>`
   background-color: ${({ $isValid, theme }) => ($isValid ? theme.colors.primary_normal : "#aaa")};
   padding: 13px 80px;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
-  /* elevation: 3; */
+  elevation: 3;
   margin-bottom: 60px;
 `;

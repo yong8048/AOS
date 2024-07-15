@@ -5,21 +5,6 @@ export const Container = styled.ScrollView`
   padding: 80px 50px 0;
 `;
 
-export const Title = styled(CustomText)`
-  font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 6px;
-`;
-
-export const Input = styled.TextInput<{ $focus: boolean }>`
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 8px 10px;
-  font-size: 20px;
-  background-color: #fff;
-  elevation: ${({ $focus }) => ($focus ? 10 : 0)};
-`;
-
 export const ButtonLogin = styled.TouchableOpacity`
   background-color: ${({ theme }) => theme.colors.primary_normal};
   height: 48px;

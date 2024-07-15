@@ -61,10 +61,10 @@ const Intro = () => {
         </S.MoveSignUp>
       </S.LoginBtnWrapper>
       <S.Contact>
-        <S.ContactBtn onPress={() => navigation.navigate("Home")}>
+        <S.ContactBtn onPress={() => navigation.navigate("Inquire")}>
           <S.ContactBtnText>1:1 문의</S.ContactBtnText>
         </S.ContactBtn>
-        <S.ContactBtn>
+        <S.ContactBtn onPress={() => navigation.navigate("Main")}>
           <S.ContactBtnText>FAQ</S.ContactBtnText>
         </S.ContactBtn>
       </S.Contact>

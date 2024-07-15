@@ -3,25 +3,23 @@ import React, { useState } from "react";
 import * as S from "./style";
 import CheckBox from "@react-native-community/checkbox";
 import { Formik } from "formik";
-import * as Yup from "yup";
-
-const signUpSchema = Yup.object().shape({
-  email: Yup.string().email("유효한 이메일을 입력해주세요.").required("이메일은 필수 입력 항목입니다."),
-  code: Yup.string().required("인증코드는 필수 입력 항목입니다."),
-  password: Yup.string().min(8, "비밀번호는 최소 8자 이상이어야 합니다.").required("비밀번호는 필수 입력 항목입니다."),
-  duplication: Yup.string()
-    .oneOf([Yup.ref("password")], "비밀번호가 일치하지 않습니다.")
-    .required("비밀번호 확인은 필수 입력 항목입니다."),
-  isChecked: Yup.boolean().oneOf([true], "개인정보 처리 방침에 동의해야 합니다."),
-});
+import TitleWithInput from "@/components/Auth/TitleWithInput";
+import { signUpSchema } from "@/utils/Yup_Schema";
+import theme from "@/styles/theme";
+import TitleWithConfirmInput from "@/components/Auth/TItleWithConfirmInput";
+import { RFValue } from "react-native-responsive-fontsize";
 
 const SignUp = () => {
   const [isFocus, setIsFocus] = useState({
     email: false,
     code: false,
-    password: false,
-    duplication: false,
   });
+
+  const handleSendEmail = () => {};
+
+  const handleCheckCode = () => {};
+
+  const handleSignUp = () => {};
 
   return (
     <Formik
@@ -33,26 +31,16 @@ const SignUp = () => {
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched, setFieldValue, isValid }) => (
         <S.Container>
           <S.InputWrapper>
-            <S.TitleWrapper>
-              <S.Title>이메일</S.Title>
+            <TitleWithConfirmInput
+              title="이메일"
+              placeholder="이메일을 입력해주세요."
+              buttonText="인증"
+              value={values.email}
+              onChangeText={handleChange("email")}
+              onPress={handleSendEmail}
+            >
               {touched.email && errors.email && <S.TextError>* {errors.email}</S.TextError>}
-            </S.TitleWrapper>
-            <S.InputWithButton $focus={isFocus.email}>
-              <S.InputInView
-                placeholder="이메일을 입력해주세요."
-                placeholderTextColor="#ccc"
-                onFocus={() => setIsFocus(prevState => ({ ...prevState, email: true }))}
-                onBlur={() => {
-                  setIsFocus(prevState => ({ ...prevState, email: false }));
-                  handleBlur("email");
-                }}
-                onChangeText={handleChange("email")}
-                value={values.email}
-              />
-              <S.ButtonConfirm>
-                <Text style={{ fontWeight: "800", color: "#fff" }}>인증</Text>
-              </S.ButtonConfirm>
-            </S.InputWithButton>
+            </TitleWithConfirmInput>
           </S.InputWrapper>
           <S.InputWrapper>
             <S.TitleWrapper>
@@ -63,7 +51,7 @@ const SignUp = () => {
               <S.Input
                 style={{ flex: 1 }}
                 placeholder="인증코드를 입력해주세요."
-                placeholderTextColor="#ccc"
+                placeholderTextColor={theme.colors.place_holder}
                 $focus={isFocus.code}
                 onFocus={() => setIsFocus(prevState => ({ ...prevState, code: true }))}
                 onBlur={() => {
@@ -79,42 +67,26 @@ const SignUp = () => {
             </S.AuthenticationView>
           </S.InputWrapper>
           <S.InputWrapper>
-            <S.TitleWrapper>
-              <S.Title>비밀번호</S.Title>
-              {touched.password && errors.password && <S.TextError>* {errors.password}</S.TextError>}
-            </S.TitleWrapper>
-            <S.Input
+            <TitleWithInput
+              title="비밀번호"
               placeholder="비밀번호를 입력해주세요."
-              placeholderTextColor="#ccc"
-              $focus={isFocus.password}
-              onFocus={() => setIsFocus(prevState => ({ ...prevState, password: true }))}
-              onBlur={() => {
-                setIsFocus(prevState => ({ ...prevState, password: false }));
-                handleBlur("password");
-              }}
-              onChangeText={handleChange("password")}
               value={values.password}
-              secureTextEntry
-            />
+              onChangeText={handleChange("password")}
+              secure
+            >
+              {touched.password && errors.password && <S.TextError>* {errors.password}</S.TextError>}
+            </TitleWithInput>
           </S.InputWrapper>
           <S.InputWrapper>
-            <S.TitleWrapper>
-              <S.Title>비밀번호 확인</S.Title>
-              {touched.duplication && errors.duplication && <S.TextError>* {errors.duplication}</S.TextError>}
-            </S.TitleWrapper>
-            <S.Input
+            <TitleWithInput
+              title="비밀번호 확인"
               placeholder="비밀번호를 다시 입력해주세요."
-              placeholderTextColor="#ccc"
-              $focus={isFocus.duplication}
-              onFocus={() => setIsFocus(prevState => ({ ...prevState, duplication: true }))}
-              onBlur={() => {
-                setIsFocus(prevState => ({ ...prevState, duplication: false }));
-                handleBlur("duplication");
-              }}
-              onChangeText={handleChange("duplication")}
               value={values.duplication}
-              secureTextEntry
-            />
+              onChangeText={handleChange("duplication")}
+              secure
+            >
+              {touched.duplication && errors.duplication && <S.TextError>* {errors.duplication}</S.TextError>}
+            </TitleWithInput>
           </S.InputWrapper>
           <S.ProvisionWrapper>
             <CheckBox
@@ -122,14 +94,16 @@ const SignUp = () => {
               onValueChange={value => setFieldValue("isChecked", value)}
               tintColors={{ true: "#5667ff", false: "#5667ff" }}
             />
-            <Text style={{ color: "#000", fontSize: 16, fontWeight: "800" }}>[필수] 개인정보 처리 방침</Text>
+            <Text style={{ color: "#000", fontSize: RFValue(16, 800), fontWeight: "800" }}>
+              [필수] 개인정보 처리 방침
+            </Text>
             <TouchableOpacity>
-              <Text style={{ color: "#000", fontSize: 16, fontWeight: "800" }}>[보기]</Text>
+              <Text style={{ color: "#000", fontSize: RFValue(16, 800), fontWeight: "800" }}>[보기]</Text>
             </TouchableOpacity>
           </S.ProvisionWrapper>
           {touched.isChecked && errors.isChecked && <S.TextError>* {errors.isChecked}</S.TextError>}
           <S.ButtonSubmit onPress={() => handleSubmit()} disabled={!isValid} $isValid={isValid}>
-            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 20 }}>회원가입 {isValid}</Text>
+            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 20 }}>회원가입</Text>
           </S.ButtonSubmit>
         </S.Container>
       )}

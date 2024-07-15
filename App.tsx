@@ -12,13 +12,15 @@ import ReactQueryProvider from "@/components/Common/ReactQueryProvider";
 import { ThemeProvider } from "styled-components/native";
 import theme from "@/styles/theme";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { Alert, Dimensions, View } from "react-native";
 
 function App(): React.JSX.Element {
+  const { width, height } = Dimensions.get("screen");
   useEffect(() => {
-    console.log(Config.GOOGLE_ACCOUNT_CLIENT_ID);
     GoogleSignin.configure({
       webClientId: Config.GOOGLE_ACCOUNT_CLIENT_ID,
     });
+    console.log(width, height);
   }, []);
 
   return (

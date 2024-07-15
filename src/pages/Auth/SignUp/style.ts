@@ -1,4 +1,5 @@
 import { CustomText } from "@/styles/CustomText";
+import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const Container = styled.ScrollView`
@@ -17,16 +18,17 @@ export const TitleWrapper = styled.View`
 `;
 
 export const Title = styled(CustomText)`
-  font-size: 20px;
+  font-size: ${RFValue(18, 800)}px;
   font-weight: 800;
 `;
 
 export const InputWithButton = styled.View<{ $focus: boolean }>`
-  border: 1px solid black;
+  border: 1px solid;
   border-radius: 10px;
+  border-color: ${({ $focus, theme }) => ($focus ? "#000" : theme.colors.place_holder)};
+  elevation: ${({ $focus }) => ($focus ? 3 : 0)};
   padding: 8px 10px;
   background-color: white;
-  elevation: ${({ $focus }) => ($focus ? 5 : 0)};
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
@@ -55,19 +57,20 @@ export const ButtonConfirm = styled.TouchableOpacity`
 
 export const Input = styled.TextInput<{ $focus: boolean }>`
   border: 1px solid black;
+  border-color: ${({ $focus, theme }) => ($focus ? "#000" : theme.colors.place_holder)};
   border-radius: 10px;
   padding: 8px 10px;
-  font-size: 20px;
+  font-size: ${RFValue(16, 800)}px;
   background-color: #fff;
   color: #000;
-  elevation: ${({ $focus }) => ($focus ? 5 : 0)};
+  elevation: ${({ $focus }) => ($focus ? 3 : 0)};
 `;
 
 export const ProvisionWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 20px 20px;
+  margin: 40px 0 20px;
 `;
 
 export const ButtonSubmit = styled.TouchableOpacity<{ $isValid: boolean }>`
@@ -77,7 +80,7 @@ export const ButtonSubmit = styled.TouchableOpacity<{ $isValid: boolean }>`
   justify-content: center;
   align-items: center;
   elevation: 3;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 `;
 
 export const TextError = styled(CustomText)`
