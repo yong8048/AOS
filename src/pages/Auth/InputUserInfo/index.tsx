@@ -4,7 +4,7 @@ import * as S from "./style";
 import { Formik, FormikErrors } from "formik";
 import DatePicker from "react-native-date-picker";
 import TitleWithInput from "@/components/Auth/TitleWithInput";
-import { nickNameSchema } from "@/utils/Yup_Schema";
+import { userNameSchema } from "@/utils/Yup_Schema";
 import TitleWithConfirmInput from "@/components/Auth/TItleWithConfirmInput";
 
 const InputUserInfo = () => {
@@ -16,7 +16,7 @@ const InputUserInfo = () => {
     setFieldValue: (
       field: string,
       value: any,
-    ) => Promise<void | FormikErrors<{ nickName: string; validation: boolean }>>,
+    ) => Promise<void | FormikErrors<{ userName: string; validation: boolean }>>,
   ) => {
     // 중복확인 API 추가해야함
     setFieldValue("validation", true);
@@ -24,9 +24,9 @@ const InputUserInfo = () => {
 
   return (
     <Formik
-      initialValues={{ nickName: "", validation: false }}
+      initialValues={{ userName: "", validation: false }}
       onSubmit={value => console.log(value)}
-      validationSchema={nickNameSchema}
+      validationSchema={userNameSchema}
       validateOnMount
     >
       {({ handleChange, handleBlur, handleSubmit, values, setFieldValue, errors, touched, isValid }) => (
@@ -37,11 +37,11 @@ const InputUserInfo = () => {
               title="닉네임"
               placeholder="닉네임을 입력해주세요"
               buttonText="중복확인"
-              value={values.nickName}
-              onChangeText={handleChange("nickName")}
+              value={values.userName}
+              onChangeText={handleChange("userName")}
               onPress={() => handleCheckValid(setFieldValue)}
             >
-              {touched.nickName && errors.nickName && <S.TextError>* {errors.nickName}</S.TextError>}
+              {touched.userName && errors.userName && <S.TextError>* {errors.userName}</S.TextError>}
             </TitleWithConfirmInput>
           </View>
           <View style={{ marginBottom: 40 }}>

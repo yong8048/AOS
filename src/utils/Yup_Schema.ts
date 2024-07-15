@@ -22,9 +22,10 @@ export const findPasswordSchema = Yup.object().shape({
     .required("비밀번호 확인은 필수 입력 항목입니다."),
 });
 
-export const nickNameSchema = Yup.object().shape({
-  nickName: Yup.string()
+export const userNameSchema = Yup.object().shape({
+  userName: Yup.string()
     .max(15, "닉네임은 최대 15자까지만 입력가능합니다.")
     .matches(/^[A-z][A-z0-9_-]{0,14}$/, "영문 및 숫자, -, _로 15자까지 구성할 수 있습니다.")
     .required("닉네임은 필수 입력 항목입니다."),
+  validation: Yup.boolean().isTrue(),
 });
