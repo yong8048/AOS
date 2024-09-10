@@ -7,7 +7,7 @@ interface ICustomTextProps extends TextProps {
 }
 
 const OMGText: React.FC<ICustomTextProps> = ({ style, $isBold, ...rest }) => {
-  return <S.CustomText style={style} {...rest} allowFontScaling={false} $isBold />;
+  return <S.CustomText style={style} {...rest} allowFontScaling={false} />;
 };
 
 export default OMGText;

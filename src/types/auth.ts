@@ -1,4 +1,4 @@
-import { KeyboardTypeOptions } from "react-native";
+import { KeyboardTypeOptions, StyleProp, TextStyle } from "react-native";
 
 interface IPropsTitleWithInput {
   children?: React.ReactNode;
@@ -10,6 +10,8 @@ interface IPropsTitleWithInput {
   secure?: boolean;
   keyboardType?: KeyboardTypeOptions;
   disabled?: boolean;
+  multiline?: boolean;
+  style?: StyleProp<TextStyle>;
 }
 
 interface IPropsTitleWithConfirmInput extends IPropsTitleWithInput {

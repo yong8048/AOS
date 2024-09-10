@@ -24,6 +24,8 @@ const TitleAndInput = (props: IPropsTitleWithInput) => {
           secureTextEntry={props.secure}
           keyboardType={props.keyboardType || "default"}
           editable={props.disabled && false}
+          multiline={props.multiline}
+          style={props.style}
         />
       </Pressable>
     </>

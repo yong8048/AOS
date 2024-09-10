@@ -29,3 +29,9 @@ export const userNameSchema = Yup.object().shape({
     .required("닉네임은 필수 입력 항목입니다."),
   validation: Yup.boolean().isTrue(),
 });
+
+export const inquireSchema = Yup.object().shape({
+  email: Yup.string().email("유효한 이메일을 입력해주세요.").required("이메일은 필수 입력 항목입니다."),
+  title: Yup.string().required("제목을 입력해주세요."),
+  content: Yup.string().required("내용을 입력해주세요."),
+});
