@@ -1,69 +1,64 @@
-import { View, ScrollView, Alert } from "react-native";
-import React, { useState } from "react";
+import { View, ScrollView } from "react-native";
+import React from "react";
 import * as S from "./style";
 import TitleWithInput from "@/components/Auth/TitleWithInput";
 import { useAppNavigation } from "@/navigation/Navigation";
+import { Formik } from "formik";
+import { inquireSchema } from "@/utils/Yup_Schema";
 
 const Inquire = () => {
   const navigation = useAppNavigation();
-  const [isFocus, setIsFocus] = useState(false);
-  const [inquireData, setInquireData] = useState({
-    email: "",
-    title: "",
-    content: "",
-  });
 
-  const handlePressSendData = () => {
-    if (inquireData.email === "") {
-      console.log("이메일");
-    }
-    if (inquireData.title === "") {
-      console.log("제목");
-    }
-    if (inquireData.content === "") {
-      console.log("내용");
-    }
-    if (inquireData.email !== "" && inquireData.title !== "" && inquireData.content !== "") {
-      Alert.alert("알림", "문의가 전송되었습니다.", [{ text: "확인", onPress: () => navigation.goBack() }], {
-        cancelable: false,
-      });
-    }
-  };
   return (
-    <ScrollView>
-      <S.Container>
-        <View style={{ marginBottom: 20 }}>
-          <TitleWithInput
-            title="이메일"
-            placeholder="답변받으실 이메일을 입력해주세요."
-            value={inquireData.email}
-            onChangeText={text => setInquireData({ ...inquireData, email: text })}
-          />
-        </View>
-        <View style={{ marginBottom: 20 }}>
-          <TitleWithInput
-            title="제목"
-            placeholder="제목을 입력해주세요."
-            value={inquireData.title}
-            onChangeText={text => setInquireData({ ...inquireData, title: text })}
-          />
-        </View>
-        <View style={{ marginBottom: 20 }}>
-          <TitleWithInput
-            title="문의 내용"
-            placeholder="문의 내용을 입력해주세요."
-            value={inquireData.content}
-            multiline={true}
-            onChangeText={text => setInquireData({ ...inquireData, content: text })}
-            style={{ minHeight: 300, textAlignVertical: "top" }}
-          />
-        </View>
+    <Formik
+      initialValues={{ email: "", title: "", content: "" }}
+      onSubmit={value => console.log(value)}
+      validateOnMount
+      validationSchema={inquireSchema}
+    >
+      {({ handleSubmit, handleChange, values, errors, isValid, touched }) => (
+        <ScrollView>
+          <S.Container>
+            <View style={{ marginBottom: 20 }}>
+              <TitleWithInput
+                title="이메일"
+                placeholder="답변받으실 이메일을 입력해주세요."
+                value={values.email}
+                onChangeText={handleChange("email")}
+              >
+                {touched.email && errors.email && <S.TextError>* {errors.email}</S.TextError>}
+              </TitleWithInput>
+            </View>
+            <View style={{ marginBottom: 20 }}>
+              <TitleWithInput
+                title="제목"
+                placeholder="제목을 입력해주세요."
+                value={values.title}
+                onChangeText={handleChange("title")}
+              >
+                {touched.title && errors.title && <S.TextError>* {errors.title}</S.TextError>}
+              </TitleWithInput>
+            </View>
+            <View style={{ marginBottom: 20 }}>
+              <TitleWithInput
+                title="문의 내용"
+                placeholder="문의 내용을 입력해주세요."
+                value={values.content}
+                multiline
+                onChangeText={handleChange("content")}
+                style={{ minHeight: 300, textAlignVertical: "top" }}
+              >
+                {touched.content && errors.content && <S.TextError>* {errors.content}</S.TextError>}
+              </TitleWithInput>
+            </View>
 
-        <S.SendBtn onPress={handlePressSendData}>
-          <S.BtnInText>문의하기</S.BtnInText>
-        </S.SendBtn>
-      </S.Container>
-    </ScrollView>
+            <S.SendBtn onPress={() => handleSubmit()} disabled={!isValid} $isValid={isValid}>
+              <S.BtnInText>문의하기</S.BtnInText>
+            </S.SendBtn>
+          </S.Container>
+        </ScrollView>
+      )}
+    </Formik>
   );
 };
 
