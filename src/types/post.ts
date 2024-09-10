@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 interface IPostData {
+  id: string;
   userName: string;
   profileImage: string;
   images: string[];
