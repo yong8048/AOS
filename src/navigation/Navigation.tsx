@@ -20,6 +20,7 @@ interface StackParamList {
   Inquire: undefined;
   FindPassword: undefined;
   InputUserInfo: undefined;
+  Faq: undefined;
 }
 
 export const useAppNavigation = (): NavigationProp<StackParamList> => {
